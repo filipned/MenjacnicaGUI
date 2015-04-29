@@ -71,7 +71,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnObrisiKurs;
 	private JButton btnIzvrsiZamjenu;
 	private JScrollPane scrollPaneStatus;
-	private JTextArea textAreaStatus;
+	public static JTextArea textAreaStatus;
 
 	/**
 	 * Launch the application.
@@ -297,6 +297,9 @@ public class MenjacnicaGUI extends JFrame {
 			btnDodajKurs.setPreferredSize(new Dimension(115, 30));
 			btnDodajKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
+					DodajKursGUI dodaj = new DodajKursGUI();
+					dodaj.setVisible(true);
 				}
 			});
 		}
