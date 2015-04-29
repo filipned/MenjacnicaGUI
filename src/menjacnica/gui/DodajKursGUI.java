@@ -183,11 +183,11 @@ public class DodajKursGUI extends JFrame {
 					double prodajni = Double.parseDouble(textFieldProdajni.getText());
 					double kupovni = Double.parseDouble(textFieldKupovni.getText());
 					double srednji = Double.parseDouble(textFieldSrednji.getText());
-					String dodajKurs = "Sifra: " + sifra + ", " + "Naziv: " + textFieldNaziv.getText() + ", Prodajni kurs: " + prodajni +
+					String kurs = "Dodat kurs - Sifra: " + sifra + ", " + "Naziv: " + textFieldNaziv.getText() + ", Prodajni kurs: " + prodajni +
 											", Kupovni kurs: " + kupovni + ", Srednji kurs: " + srednji + ", Skraceni naziv: " +
 												textFieldSkraceni.getText() + "." + "\n";
 					String status = MenjacnicaGUI.textAreaStatus.getText();
-					status = status + dodajKurs;
+					status = status + kurs;
 					MenjacnicaGUI.textAreaStatus.setText(status);
 				}
 			});
@@ -196,6 +196,7 @@ public class DodajKursGUI extends JFrame {
 		}
 		return btnDodaj;
 	}
+	
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
