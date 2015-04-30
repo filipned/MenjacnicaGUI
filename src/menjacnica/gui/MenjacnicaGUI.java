@@ -154,7 +154,7 @@ public class MenjacnicaGUI extends JFrame {
 			southPanel = new JPanel();
 			southPanel.setPreferredSize(new Dimension(10, 73));
 			southPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			southPanel.setLayout(null);
+			southPanel.setLayout(new BorderLayout(0, 0));
 			southPanel.add(getScrollPane_1_1());
 		}
 		return southPanel;
@@ -321,6 +321,12 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzvrsiZamjenu() {
 		if (btnIzvrsiZamjenu == null) {
 			btnIzvrsiZamjenu = new JButton("Izvrsi zamenu");
+			btnIzvrsiZamjenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IzvrsiZamenuGUI frameIzmjena = new IzvrsiZamenuGUI();
+					frameIzmjena.setVisible(true);
+				}
+			});
 			btnIzvrsiZamjenu.setPreferredSize(new Dimension(115, 30));
 		}
 		return btnIzvrsiZamjenu;
@@ -328,7 +334,6 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane_1_1() {
 		if (scrollPaneStatus == null) {
 			scrollPaneStatus = new JScrollPane();
-			scrollPaneStatus.setBounds(6, 16, 547, 50);
 			scrollPaneStatus.setViewportView(getTextArea_1());
 		}
 		return scrollPaneStatus;
