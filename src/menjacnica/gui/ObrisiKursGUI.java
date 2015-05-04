@@ -198,6 +198,7 @@ public class ObrisiKursGUI extends JFrame {
 					String status = MenjacnicaGUI.textAreaStatus.getText();
 					status = status + kurs;
 					MenjacnicaGUI.textAreaStatus.setText(status);
+					setVisible(false);
 				}
 			});
 			btnObrisi.setEnabled(false);

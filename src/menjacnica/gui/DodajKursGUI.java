@@ -189,6 +189,7 @@ public class DodajKursGUI extends JFrame {
 					String status = MenjacnicaGUI.textAreaStatus.getText();
 					status = status + kurs;
 					MenjacnicaGUI.textAreaStatus.setText(status);
+					setVisible(false);
 				}
 			});
 			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 13));

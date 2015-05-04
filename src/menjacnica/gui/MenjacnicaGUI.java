@@ -50,6 +50,9 @@ import javax.swing.UIManager;
 import java.awt.Color;
 
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JPopupMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MenjacnicaGUI extends JFrame {
 
@@ -72,6 +75,10 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnIzvrsiZamjenu;
 	private JScrollPane scrollPaneStatus;
 	public static JTextArea textAreaStatus;
+	private JPopupMenu popupMenu;
+	private JMenuItem mntmDodajKurs;
+	private JMenuItem mntmObrsiKurs;
+	private JMenuItem mntmIzvrsiZamenu;
 
 	/**
 	 * Launch the application.
@@ -282,6 +289,7 @@ public class MenjacnicaGUI extends JFrame {
 					return columnTypes[columnIndex];
 				}
 			});
+			addPopup(table, getPopupMenu());
 			table.getColumnModel().getColumn(0).setPreferredWidth(80);
 			table.getColumnModel().getColumn(1).setPreferredWidth(80);
 			table.getColumnModel().getColumn(2).setPreferredWidth(80);
@@ -310,8 +318,8 @@ public class MenjacnicaGUI extends JFrame {
 			btnObrisiKurs = new JButton("Obrisi kurs");
 			btnObrisiKurs.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ObrisiKursGUI frameDodaj = new ObrisiKursGUI();
-					frameDodaj.setVisible(true);
+					ObrisiKursGUI frameObrisi = new ObrisiKursGUI();
+					frameObrisi.setVisible(true);
 				}
 			});
 			btnObrisiKurs.setPreferredSize(new Dimension(115, 30));
@@ -334,6 +342,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane_1_1() {
 		if (scrollPaneStatus == null) {
 			scrollPaneStatus = new JScrollPane();
+			scrollPaneStatus.setAutoscrolls(true);
 			scrollPaneStatus.setViewportView(getTextArea_1());
 		}
 		return scrollPaneStatus;
@@ -346,5 +355,67 @@ public class MenjacnicaGUI extends JFrame {
 			textAreaStatus.setPreferredSize(new Dimension(4, 23));
 		}
 		return textAreaStatus;
+	}
+	private JPopupMenu getPopupMenu() {
+		if (popupMenu == null) {
+			popupMenu = new JPopupMenu();
+			popupMenu.add(getMntmDodajKurs());
+			popupMenu.add(getMntmObrsiKurs());
+			popupMenu.add(getMntmIzvrsiZamenu());
+		}
+		return popupMenu;
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	private JMenuItem getMntmDodajKurs() {
+		if (mntmDodajKurs == null) {
+			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					DodajKursGUI dodaj = new DodajKursGUI();
+					dodaj.setVisible(true);
+				}
+			});
+		}
+		return mntmDodajKurs;
+	}
+	private JMenuItem getMntmObrsiKurs() {
+		if (mntmObrsiKurs == null) {
+			mntmObrsiKurs = new JMenuItem("Obrisi kurs");
+			mntmObrsiKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ObrisiKursGUI frameObrisi = new ObrisiKursGUI();
+					frameObrisi.setVisible(true);
+				}
+			});
+		}
+		return mntmObrsiKurs;
+	}
+	private JMenuItem getMntmIzvrsiZamenu() {
+		if (mntmIzvrsiZamenu == null) {
+			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IzvrsiZamenuGUI frameIzmjena = new IzvrsiZamenuGUI();
+					frameIzmjena.setVisible(true);
+				}
+			});
+		}
+		return mntmIzvrsiZamenu;
 	}
 }

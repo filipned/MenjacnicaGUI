@@ -216,6 +216,7 @@ public class IzvrsiZamenuGUI extends JFrame {
 					String status = MenjacnicaGUI.textAreaStatus.getText();
 					status = status + izmjena;
 					MenjacnicaGUI.textAreaStatus.setText(status);
+					setVisible(false);
 				}
 			});
 			btnIzvrsiZamenu.setFont(new Font("Tahoma", Font.PLAIN, 13));
