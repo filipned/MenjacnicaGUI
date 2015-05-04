@@ -61,7 +61,6 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenu mnFile;
 	private JMenu mnHelp;
 	private JPanel centerPanel;
-	private JPanel southPanel;
 	private JPanel eastPanel;
 	private JMenuItem mntmNewMenuItem;
 	private JMenuItem mntmSave;
@@ -73,12 +72,13 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton btnDodajKurs;
 	private JButton btnObrisiKurs;
 	private JButton btnIzvrsiZamjenu;
-	private JScrollPane scrollPaneStatus;
-	public static JTextArea textAreaStatus;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmObrsiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
+	private JPanel southPanel;
+	private JScrollPane scrollPaneStatus;
+	public static JTextArea textAreaStatus;
 
 	/**
 	 * Launch the application.
@@ -112,15 +112,15 @@ public class MenjacnicaGUI extends JFrame {
 					}
 			   }
 		});
-		setBounds(100, 100, 585, 408);
+		setBounds(100, 100, 624, 408);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.add(getCenterPanel(), BorderLayout.CENTER);
-		contentPane.add(getSouthPanel(), BorderLayout.SOUTH);
 		contentPane.add(getEastPanel(), BorderLayout.EAST);
+		contentPane.add(getSouthPanel(), BorderLayout.SOUTH);
 	}
 
 	private JMenuBar getMenuBar_1() {
@@ -155,16 +155,6 @@ public class MenjacnicaGUI extends JFrame {
 			centerPanel.add(getScrollPane());
 		}
 		return centerPanel;
-	}
-	private JPanel getSouthPanel() {
-		if (southPanel == null) {
-			southPanel = new JPanel();
-			southPanel.setPreferredSize(new Dimension(10, 73));
-			southPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			southPanel.setLayout(new BorderLayout(0, 0));
-			southPanel.add(getScrollPane_1_1());
-		}
-		return southPanel;
 	}
 	private JPanel getEastPanel() {
 		if (eastPanel == null) {
@@ -339,23 +329,6 @@ public class MenjacnicaGUI extends JFrame {
 		}
 		return btnIzvrsiZamjenu;
 	}
-	private JScrollPane getScrollPane_1_1() {
-		if (scrollPaneStatus == null) {
-			scrollPaneStatus = new JScrollPane();
-			scrollPaneStatus.setAutoscrolls(true);
-			scrollPaneStatus.setViewportView(getTextArea_1());
-		}
-		return scrollPaneStatus;
-	}
-	private JTextArea getTextArea_1() {
-		if (textAreaStatus == null) {
-			textAreaStatus = new JTextArea();
-			textAreaStatus.setWrapStyleWord(true);
-			textAreaStatus.setLineWrap(true);
-			textAreaStatus.setPreferredSize(new Dimension(4, 23));
-		}
-		return textAreaStatus;
-	}
 	private JPopupMenu getPopupMenu() {
 		if (popupMenu == null) {
 			popupMenu = new JPopupMenu();
@@ -417,5 +390,30 @@ public class MenjacnicaGUI extends JFrame {
 			});
 		}
 		return mntmIzvrsiZamenu;
+	}
+	private JPanel getSouthPanel() {
+		if (southPanel == null) {
+			southPanel = new JPanel();
+			southPanel.setBorder(new TitledBorder(null, "STATUS", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			southPanel.setPreferredSize(new Dimension(10, 80));
+			southPanel.setLayout(new BorderLayout(0, 0));
+			southPanel.add(getScrollPaneStatus(), BorderLayout.CENTER);
+		}
+		return southPanel;
+	}
+	private JScrollPane getScrollPaneStatus() {
+		if (scrollPaneStatus == null) {
+			scrollPaneStatus = new JScrollPane();
+			scrollPaneStatus.setViewportView(getTextAreaStatus());
+		}
+		return scrollPaneStatus;
+	}
+	private JTextArea getTextAreaStatus() {
+		if (textAreaStatus == null) {
+			textAreaStatus = new JTextArea();
+			textAreaStatus.setLineWrap(true);
+			textAreaStatus.setWrapStyleWord(true);
+		}
+		return textAreaStatus;
 	}
 }
